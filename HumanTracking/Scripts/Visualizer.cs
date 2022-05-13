@@ -2,11 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace NNCam {
-    public class TextureDisplayer : MonoBehaviour {
+    public class Visualizer : MonoBehaviour {
         [SerializeField] private RawImage previewUI;
-        [SerializeField] private HumanMaskProvider provider;
         [SerializeField] private Type type;
-        // Update is called once per frame
+
+        private HumanMaskProvider provider;
+
+        private void Start() {
+            provider = GetComponent<HumanMaskProvider>(); 
+        }
+
         void Update() {
             switch (type) {
                 case Type.Mask:

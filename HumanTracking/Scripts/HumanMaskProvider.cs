@@ -6,18 +6,22 @@ namespace NNCam {
         public Texture MaskTexture => output;
         public Texture SourceTexture => source.Texture;
 
-        [SerializeField] protected ImageSource source;
         [SerializeField] protected ResourceSet resource;
         [SerializeField] protected Shader shader;
         [SerializeField] protected Shader mirrorShader;
+
         protected SegementationFilter filter;
 
         [SerializeField] private RenderTexture output;
         [SerializeField] private bool mirror;
+
+        protected ImageSource source;
+
         private Material material;
         private Material mirrorMat;
 
         protected virtual void Start() {
+            source = GetComponent<ImageSource>();
             filter = new SegementationFilter(resource, 512, 384);
             material = new Material(shader);
             mirrorMat = new Material(mirrorShader);
