@@ -72,6 +72,8 @@ MonoBehaviour:
   _previewUI: {fileID: 3435783656223177063}
   _resources: {fileID: 11400000, guid: 4fb839cbed0f44aa1bf81cb6aff8a91f, type: 2}
   _shader: {fileID: 4800000, guid: 8bfad1f4389c7964e8c640730f44fd7e, type: 3}
+  _shader2: {fileID: 4800000, guid: 0e5235601cbbbf346a4961ffdbd1a9e1, type: 3}
+  rt: {fileID: 0}
 --- !u!1 &3435783656223177081
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,11 +106,11 @@ RectTransform:
   m_Father: {fileID: 3435783656913480794}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 768, y: 432}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &3435783656223177062
 CanvasRenderer:
   m_ObjectHideFlags: 0

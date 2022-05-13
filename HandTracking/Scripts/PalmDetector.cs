@@ -174,7 +174,7 @@ public sealed partial class PalmDetector : System.IDisposable
     Detection[] _post2ReadCache;
     int[] _countReadCache = new int[1];
 
-    Detection[] UpdatePost2ReadCache()
+    public Detection[] UpdatePost2ReadCache()
     {
         _countBuffer.GetData(_countReadCache, 0, 0, 1);
         var count = _countReadCache[0];

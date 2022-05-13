@@ -6,6 +6,8 @@ Shader "Hidden/MediaPipe/BlazePalm/Visualizer"
     #include "Struct.hlsl"
 
     StructuredBuffer<PalmDetection> _Detections;
+    float2 _CanvasRatio;
+    float2 _CanvasOffset;
 
     float4 VertexBox(uint vid : SV_VertexID,
                      uint iid : SV_InstanceID) : SV_Position
@@ -17,8 +19,8 @@ Shader "Hidden/MediaPipe/BlazePalm/Visualizer"
         float y = d.center.y + d.extent.y * lerp(-0.5, 0.5, vid < 2 || vid == 5);
 
         // Clip space to screen space
-        x = (2 * x - 1) * _ScreenParams.y / _ScreenParams.x;
-        y =  2 * y - 1;
+        x =  (2 * x - 1) * _CanvasRatio.x + _CanvasOffset.x;
+        y =  (2 * y - 1) * _CanvasRatio.y + _CanvasOffset.y;
 
         return float4(x, y, 1, 1);
     }
@@ -43,8 +45,7 @@ Shader "Hidden/MediaPipe/BlazePalm/Visualizer"
         p.y += size * lerp(-1, 1, vtid > 2) * (vtid > 1);
 
         // Clip space to screen space
-        p = p * 2 - 1;
-        p.x *= _ScreenParams.y / _ScreenParams.x;
+        p = (p * 2 - 1) * _CanvasRatio + _CanvasOffset;
 
         return float4(p, 1, 1);
     }

@@ -46,7 +46,6 @@ namespace MediaPipe {
             _boxDrawArgs.Dispose();
             _keyDrawArgs.Dispose();
         }
-
         void LateUpdate() {
             _detector.ProcessImage(source.Texture);
             _previewUI.texture = source.Texture;
@@ -59,6 +58,12 @@ namespace MediaPipe {
             // Copy the detection count into the indirect draw args.
             _detector.SetIndirectDrawCount(_boxDrawArgs);
             _detector.SetIndirectDrawCount(_keyDrawArgs);
+            var d = new int[4];
+            _boxDrawArgs.GetData(d);
+
+            var ratio = new Vector2(_previewUI.rectTransform.sizeDelta.x / Screen.width, _previewUI.rectTransform.sizeDelta.y / Screen.height);
+            _material.SetVector("_CanvasRatio", ratio);
+            _material.SetVector("_CanvasOffset", new Vector2(1 - ratio.x, 1 - ratio.y));
 
             // Bounding box
             _material.SetPass(0);
