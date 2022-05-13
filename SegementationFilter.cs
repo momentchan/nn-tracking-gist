@@ -1,4 +1,4 @@
-using Common;
+using NN.Common;
 using Unity.Barracuda;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
