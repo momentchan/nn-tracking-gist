@@ -1,5 +1,4 @@
 using Klak.TestTools;
-using mj.gist;
 using UnityEngine;
 
 namespace NNCam {
