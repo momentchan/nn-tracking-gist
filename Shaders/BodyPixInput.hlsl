@@ -1,5 +1,4 @@
 #include "Common.hlsl"
-#include "Assets/Common/ShaderUtil/Common.hlsl"
 
 texture2D _BodyPixTexture;
 float4 _BodyPixTexture_TexelSize;

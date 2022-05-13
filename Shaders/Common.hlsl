@@ -48,6 +48,16 @@
 #define BODYPIX_PART_RIGHT_FEET             23
 #define BODYPIX_PART_COUNT                  24
 
+void VertexFullScreenTriangle(uint vid : SV_VertexID,
+    out float4 outPosition : SV_Position,
+    out float2 outTexCoord : TEXCOORD)
+{
+    float x = (vid & 1) * 2;
+    float y = (vid > 1) * 2;
+    outPosition = float4(x * 2 - 1, 1 - y * 2, 1, 1);
+    outTexCoord = float2(x, y);
+}
+
 // Sigmoid function
 float BodyPix_Sigmoid(float x)
 {
