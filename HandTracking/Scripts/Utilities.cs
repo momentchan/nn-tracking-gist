@@ -1,7 +1,7 @@
 using Unity.Barracuda;
 using UnityEngine;
 
-namespace MediaPipe.BlazePalm {
+namespace mj.gist.tracking.hands {
 
 static class IWorkerExtensions
 {

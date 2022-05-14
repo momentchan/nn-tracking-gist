@@ -2,7 +2,7 @@ using Unity.Barracuda;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
-namespace NN.Common {
+namespace mj.gist.tracking.body {
 
     static class ObjectUtil {
         public static void Destroy(Object o) {

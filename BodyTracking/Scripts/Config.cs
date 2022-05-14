@@ -1,6 +1,6 @@
 using Unity.Barracuda;
 
-namespace NNCam {
+namespace mj.gist.tracking.body {
     public class Config {
         public int Stride { get; private set; }
         public int InputWidth { get; private set; }

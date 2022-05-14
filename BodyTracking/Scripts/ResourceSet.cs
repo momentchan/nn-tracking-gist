@@ -1,7 +1,7 @@
 using Unity.Barracuda;
 using UnityEngine;
 
-namespace NNCam {
+namespace mj.gist.tracking.body {
 
     [CreateAssetMenu(fileName = "NNCam", menuName = "ScriptableObjects/NNCam Resource")]
     public sealed class ResourceSet : ScriptableObject {

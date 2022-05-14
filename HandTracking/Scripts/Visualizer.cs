@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using MediaPipe.BlazePalm;
-using Klak.TestTools;
 
-namespace MediaPipe {
+namespace mj.gist.tracking.hands {
 
     public class Visualizer : MonoBehaviour {
         [SerializeField] RawImage _previewUI = null;

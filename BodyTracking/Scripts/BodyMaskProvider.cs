@@ -1,8 +1,7 @@
-using Klak.TestTools;
 using UnityEngine;
 
-namespace NNCam {
-    public class HumanMaskProvider : MonoBehaviour {
+namespace mj.gist.tracking.body {
+    public class BodyMaskProvider : MonoBehaviour {
         public Texture MaskTexture => output;
         public Texture SourceTexture => source.Texture;
 

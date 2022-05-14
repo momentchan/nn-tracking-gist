@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.Barracuda;
 using UnityEngine;
 
-namespace MediaPipe.BlazePalm {
+namespace mj.gist.tracking.hands {
 
 //
 // Palm detector class

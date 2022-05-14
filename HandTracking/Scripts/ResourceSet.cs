@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Barracuda;
 
-namespace MediaPipe.BlazePalm {
+namespace mj.gist.tracking.hands {
 
 //
 // ScriptableObject class used to hold references to internal assets

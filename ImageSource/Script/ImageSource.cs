@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Video;
 
-namespace Klak.TestTools {
+namespace mj.gist.tracking {
 
     public class ImageSource : MonoBehaviour {
         #region Public property

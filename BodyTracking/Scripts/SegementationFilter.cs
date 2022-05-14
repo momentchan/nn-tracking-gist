@@ -1,9 +1,8 @@
-using NN.Common;
 using Unity.Barracuda;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
-namespace NNCam {
+namespace mj.gist.tracking.body {
     public class SegementationFilter : System.IDisposable {
         public Texture MaskTexture => buffers.mask;
 

@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 376676764606998246}
   - component: {fileID: 376676764606998241}
   m_Layer: 0
-  m_Name: HumanMaskProvider
+  m_Name: BodyMaskProvider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,9 +1,6 @@
-using Klak.TestTools;
-using MediaPipe.BlazePalm;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace MediaPipe {
+namespace mj.gist.tracking.hands {
     public class HandPosProvider : MonoBehaviour {
         [SerializeField] ResourceSet _resources = null;
         protected ImageSource source;

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Klak.TestTools {
+namespace mj.gist.tracking {
 
 [CustomEditor(typeof(ImageSource))]
 public class ImageSourceEditor : Editor

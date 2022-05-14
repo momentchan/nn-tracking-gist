@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 
-namespace Klak.TestTools {
+namespace mj.gist.tracking {
 
 // Simple string label with GUIContent
 struct Label

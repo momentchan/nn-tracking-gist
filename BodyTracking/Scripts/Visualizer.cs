@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace NNCam {
+namespace mj.gist.tracking.body {
     public class Visualizer : MonoBehaviour {
         [SerializeField] private RawImage previewUI;
         [SerializeField] private Type type;
 
-        private HumanMaskProvider provider;
+        private BodyMaskProvider provider;
 
         private void Start() {
-            provider = GetComponent<HumanMaskProvider>(); 
+            provider = GetComponent<BodyMaskProvider>(); 
         }
 
         void Update() {
