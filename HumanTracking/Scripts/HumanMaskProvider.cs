@@ -8,23 +8,16 @@ namespace NNCam {
 
         [SerializeField] protected ResourceSet resource;
         [SerializeField] protected Shader shader;
-        [SerializeField] protected Shader mirrorShader;
+        [SerializeField] private RenderTexture output;
 
         protected SegementationFilter filter;
-
-        [SerializeField] private RenderTexture output;
-        [SerializeField] private bool mirror;
-
         protected ImageSource source;
-
         private Material material;
-        private Material mirrorMat;
 
         protected virtual void Start() {
             source = GetComponent<ImageSource>();
             filter = new SegementationFilter(resource, 512, 384);
             material = new Material(shader);
-            mirrorMat = new Material(mirrorShader);
         }
 
         protected virtual void Update() {
@@ -35,13 +28,6 @@ namespace NNCam {
             material.SetTexture("_BodyPixTexture", filter.MaskTexture);
             material.SetPass(0);
             Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);
-
-            if (mirror) {
-                var temp = RenderTexture.GetTemporary(output.descriptor);
-                Graphics.Blit(output, temp, mirrorMat);
-                Graphics.Blit(temp, output);
-                temp.Release();
-            }
         }
 
         protected virtual void OnDestroy() {
