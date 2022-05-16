@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace mj.gist.tracking.hands {
@@ -16,14 +17,13 @@ namespace mj.gist.tracking.hands {
             source = GetComponent<ImageSource>();
 
             _material = new Material(_shader);
+        }
+        
+        private void LateUpdate() {
             _previewUI.texture = source.Texture;
         }
 
-        void OnDestroy() {
-            Destroy(_material);
-        }
-
-        void OnRenderObject() {
+        protected void OnCameraRender(ScriptableRenderContext context, Camera[] cameras) {
             // Detection buffer
             _material.SetBuffer("_Detections", provider.DetectionBuffer);
 
@@ -39,6 +39,20 @@ namespace mj.gist.tracking.hands {
             // Key points
             _material.SetPass(1);
             Graphics.DrawProceduralIndirectNow(MeshTopology.Lines, provider.KeyDrawArgs, 0);
+        }
+
+        private void OnEnable() {
+            if (GraphicsSettings.renderPipelineAsset != null)
+                RenderPipelineManager.endFrameRendering += OnCameraRender;
+        }
+
+        private void OnDisable() {
+            if (GraphicsSettings.renderPipelineAsset != null)
+                RenderPipelineManager.endFrameRendering -= OnCameraRender;
+        }
+
+        void OnDestroy() {
+            Destroy(_material);
         }
     }
 }
