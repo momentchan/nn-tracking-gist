@@ -7,20 +7,19 @@ namespace mj.gist.tracking.hands {
 
         PalmDetector _detector;
 
-        ComputeBuffer _boxDrawArgs;
-        ComputeBuffer _keyDrawArgs;
+        GraphicsBuffer _boxDrawArgs;
+        GraphicsBuffer _keyDrawArgs;
 
-        public ComputeBuffer DetectionBuffer => _detector.DetectionBuffer;
-        public ComputeBuffer BoxDrawArgs => _boxDrawArgs;
-        public ComputeBuffer KeyDrawArgs => _keyDrawArgs;
+        public GraphicsBuffer DetectionBuffer => _detector.DetectionBuffer;
+        public GraphicsBuffer BoxDrawArgs => _boxDrawArgs;
+        public GraphicsBuffer KeyDrawArgs => _keyDrawArgs;
 
         void Start() {
             source = GetComponent<ImageSource>();
             _detector = new PalmDetector(_resources);
 
-            var cbType = ComputeBufferType.IndirectArguments;
-            _boxDrawArgs = new ComputeBuffer(4, sizeof(uint), cbType);
-            _keyDrawArgs = new ComputeBuffer(4, sizeof(uint), cbType);
+            _boxDrawArgs = new GraphicsBuffer(GraphicsBuffer.Target.IndirectArguments, 4, sizeof(uint));
+            _keyDrawArgs = new GraphicsBuffer(GraphicsBuffer.Target.IndirectArguments, 4, sizeof(uint));
             _boxDrawArgs.SetData(new[] { 6, 0, 0, 0 });
             _keyDrawArgs.SetData(new[] { 24, 0, 0, 0 });
         }
