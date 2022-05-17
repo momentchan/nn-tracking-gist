@@ -1,6 +1,5 @@
 using Unity.Barracuda;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
 
 namespace mj.gist.tracking {
 
@@ -15,33 +14,6 @@ namespace mj.gist.tracking {
     }
 
 
-    static class RTUtil {
-        public static RenderTexture NewFloat(int w, int h)
-          => new RenderTexture(w, h, 0, RenderTextureFormat.RFloat);
-
-        public static RenderTexture NewFloat4(int w, int h)
-          => new RenderTexture(w, h, 0, RenderTextureFormat.ARGBFloat);
-
-        public static RenderTexture NewUAV(int w, int h, int d = 0, RenderTextureFormat format = RenderTextureFormat.ARGBFloat, GraphicsFormat graphicsFormat = GraphicsFormat.R32G32B32A32_SFloat) {
-            var rt = new RenderTexture(w, h, d, format);
-            rt.graphicsFormat = graphicsFormat;
-            rt.enableRandomWrite = true;
-            rt.Create();
-            return rt;
-        }
-
-        public static RenderTextureFormat SingleChannelRTFormat => SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.R8)
-                                                                   ? RenderTextureFormat.R8 : RenderTextureFormat.Default;
-        public static RenderTextureFormat SingleChannelHalfRTFormat => SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.RHalf)
-                                                                    ? RenderTextureFormat.RHalf : RenderTextureFormat.ARGBHalf;
-
-        public static RenderTexture NewSingleChannelRT(int width, int height)
-          => new RenderTexture(width, height, 0, SingleChannelRTFormat);
-
-        public static RenderTexture NewSingleChannelHalfRT(int width, int height)
-          => new RenderTexture(width, height, 0, SingleChannelHalfRTFormat);
-    }
-
     static class ComputeShaderExtensions {
         public static void DispatchThreads
           (this ComputeShader compute, int kernel, int x, int y, int z) {
@@ -54,6 +26,11 @@ namespace mj.gist.tracking {
 
             compute.Dispatch(kernel, x, y, z);
         }
+    }
+
+    static class ColorUtil {
+        public static bool IsLinear
+          => QualitySettings.activeColorSpace == ColorSpace.Linear;
     }
 
     static class IWorkerExtensions {

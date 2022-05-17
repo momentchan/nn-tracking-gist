@@ -23,7 +23,6 @@ namespace mj.gist.tracking.body {
             filter.ProcessImage(source.Texture);
 
             Graphics.SetRenderTarget(output);
-
             material.SetTexture("_BodyPixTexture", filter.MaskTexture);
             material.SetPass(0);
             Graphics.DrawProceduralNow(MeshTopology.Triangles, 3, 1);

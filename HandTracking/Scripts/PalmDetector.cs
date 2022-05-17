@@ -72,7 +72,7 @@ namespace mj.gist.tracking.hands {
             _post1Buffer = new ComputeBuffer
               (MaxDetection, Detection.Size, ComputeBufferType.Append);
 
-            _post2Buffer = new GraphicsBuffer(GraphicsBuffer.Target.Append,MaxDetection, Detection.Size);
+            _post2Buffer = new GraphicsBuffer(GraphicsBuffer.Target.Append, MaxDetection, Detection.Size);
 
             _countBuffer = new ComputeBuffer
               (1, sizeof(uint), ComputeBufferType.Raw);

@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static mj.gist.tracking.hands.PalmDetector;
 
 namespace mj.gist.tracking.hands {
-    public class HandPosProvider : MonoBehaviour {
+    public class HandPosProvider : SingletonMonoBehaviour<HandPosProvider> {
         [SerializeField] ResourceSet _resources = null;
         protected ImageSource source;
 
@@ -10,6 +13,7 @@ namespace mj.gist.tracking.hands {
         GraphicsBuffer _boxDrawArgs;
         GraphicsBuffer _keyDrawArgs;
 
+        public IEnumerable<Detection> Detections => _detector.Detections;
         public GraphicsBuffer DetectionBuffer => _detector.DetectionBuffer;
         public GraphicsBuffer BoxDrawArgs => _boxDrawArgs;
         public GraphicsBuffer KeyDrawArgs => _keyDrawArgs;
