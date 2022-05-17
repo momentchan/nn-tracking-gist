@@ -7,7 +7,6 @@ namespace mj.gist.tracking.bodyPix {
 
         public GraphicsBuffer KeypointBuffer => detector.KeypointBuffer;
         public RenderTexture MaskTexture => detector.MaskTexture;
-        public float Aspect => (float)resolution.x / resolution.y;
 
         private ImageSource source = null;
         private BodyDetector detector;

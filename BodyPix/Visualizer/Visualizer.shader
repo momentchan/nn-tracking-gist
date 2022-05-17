@@ -26,6 +26,8 @@ Shader "Hidden/BodyPix/Visualizer"
 
     texture2D _MainTex;
     float4 _MainTex_TexelSize;
+    float2 _CanvasRatio;
+    float2 _CanvasOffset;
 
     void VertexMask(float4 position : POSITION,
                     float2 texCoord : TEXCOORD,
@@ -73,8 +75,11 @@ Shader "Hidden/BodyPix/Visualizer"
         const float threshold = 0.5;
         float alpha = saturate((key.z - threshold) / (1 - threshold));
 
-        float x = lerp(-0.5, 0.5, key.x) * _Aspect;
+        float x = lerp(-0.5, 0.5, key.x);
         float y = lerp(-0.5, 0.5, key.y);
+
+        x = 2 * x * _CanvasRatio.x + _CanvasOffset.x;
+        y = 2 * y * _CanvasRatio.y + _CanvasOffset.y;
 
         float vx = lerp(-0.5, 0.5, vid & 1);
         float vy = lerp(-0.5, 0.5, vid < 2 || vid == 5);
@@ -82,7 +87,7 @@ Shader "Hidden/BodyPix/Visualizer"
         vx *= 0.015 * alpha;
         vy *= 0.015 * alpha;
 
-        position = UnityObjectToClipPos(float4(x + vx, y + vy, 1, 1));
+        position = float4(x + vx, y + vy, 1, 1);
         color = float4(1, 1, 0, alpha);
     }
 
@@ -121,13 +126,16 @@ Shader "Hidden/BodyPix/Visualizer"
     {
         float4 key = _Keypoints[bone_connections[iid][vid]];
 
-        float x = lerp(-0.5, 0.5, key.x) * _Aspect;
+        float x = lerp(-0.5, 0.5, key.x);
         float y = lerp(-0.5, 0.5, key.y);
+
+        x = 2 * x * _CanvasRatio.x + _CanvasOffset.x;
+        y = 2 * y * _CanvasRatio.y + _CanvasOffset.y;
 
         const float threshold = 0.3;
         bool mask = key.z > threshold;
 
-        position = UnityObjectToClipPos(float4(x, y, 1, 1));
+        position = float4(x, y, 1, 1);
         color = float4(1, 1, 0, mask);
     }
 

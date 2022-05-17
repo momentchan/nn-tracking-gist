@@ -7,7 +7,9 @@ namespace mj.gist.tracking.bodyPix {
         [SerializeField] private RawImage rawUI = null;
         [SerializeField] private RawImage maskUI = null;
         [SerializeField] private Shader shader;
-        [SerializeField] private bool drawSkeleton = false;
+        [SerializeField] private KeyCode debugKey = KeyCode.D;
+
+        private bool drawDebug = false;
 
         private Material material;
         private RenderTexture mask;
@@ -23,17 +25,27 @@ namespace mj.gist.tracking.bodyPix {
 
             material = new Material(shader);
         }
+
         private void LateUpdate() {
+            if (Input.GetKeyDown(debugKey)) {
+                drawDebug = !drawDebug;
+                rawUI.enabled = drawDebug;
+                maskUI.enabled = drawDebug;
+            }
+
             rawUI.texture = source.Texture;
             maskUI.texture = mask;
             Graphics.Blit(provider.MaskTexture, mask, material, 0);
         }
 
         protected void OnCameraRender(ScriptableRenderContext context, Camera[] cameras) {
-            if (!drawSkeleton) return;
+            if (!drawDebug) return;
 
             material.SetBuffer("_Keypoints", provider.KeypointBuffer);
-            material.SetFloat("_Aspect", provider.Aspect);
+
+            var ratio = new Vector2(rawUI.rectTransform.sizeDelta.x / Screen.width, rawUI.rectTransform.sizeDelta.y / Screen.height);
+            material.SetVector("_CanvasRatio", ratio);
+            material.SetVector("_CanvasOffset", new Vector2(1 - ratio.x, 1 - ratio.y));
 
             material.SetPass(1);
             Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, Body.KeypointCount);
