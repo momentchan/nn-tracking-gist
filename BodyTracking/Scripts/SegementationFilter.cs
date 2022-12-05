@@ -1,14 +1,22 @@
 using Unity.Barracuda;
 using UnityEngine;
 
-namespace mj.gist.tracking.body {
-    public class SegementationFilter : System.IDisposable {
+namespace mj.gist.tracking.body
+{
+    public class SegementationFilter : System.IDisposable
+    {
         public Texture MaskTexture => buffers.mask;
+        public GraphicsBuffer KeyPoints => buffers.keypoints;
+        public Vector3 GetKeyPoint(int id)
+           => new Vector3(KeyPointCache[4 * id],
+                          KeyPointCache[4 * id + 1],
+                          KeyPointCache[4 * id + 2]);
 
         private int KeyPointCount = 17;
         private float[] KeyPointCache = new float[17 * 4];
 
-        public SegementationFilter(ResourceSet resource, int w = 1920, int h = 1080) {
+        public SegementationFilter(ResourceSet resource, int w = 1920, int h = 1080)
+        {
             this.resource = resource;
 
             config = new Config(resource, w, h);
@@ -34,7 +42,8 @@ namespace mj.gist.tracking.body {
          RenderTexture mask,
          GraphicsBuffer keypoints) buffers;
 
-        public void ProcessImage(Texture sourceTex) {
+        public void ProcessImage(Texture sourceTex)
+        {
 
             // Preprocess
             var pre = resource.preprocess;
@@ -69,10 +78,11 @@ namespace mj.gist.tracking.body {
             post2.Dispatch(0, 1, 1, 1);
 
             buffers.keypoints.GetData(KeyPointCache);
-            Debug.Log($"{KeyPointCache[0]} {KeyPointCache[1]} {KeyPointCache[2]}");
+            //Debug.Log($"{KeyPointCache[0]} {KeyPointCache[1]} {KeyPointCache[2]}");
         }
 
-        public void Dispose() {
+        public void Dispose()
+        {
             worker?.Dispose();
             worker = null;
 
