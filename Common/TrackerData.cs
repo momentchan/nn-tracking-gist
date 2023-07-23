@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace mj.gist.tracking {
+namespace mj.tracking {
     public struct TrackerData {
         public uint active;
         public uint isMoving;

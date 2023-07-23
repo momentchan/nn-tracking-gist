@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using mj.gist;
 using UnityEngine;
 
-namespace mj.gist.tracking {
+namespace mj.tracking {
     public class TrackerManager : SingletonMonoBehaviour<TrackerManager> {
         private TrackerData[] trackers;
 
