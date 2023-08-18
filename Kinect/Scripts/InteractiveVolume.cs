@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace mj.gist.tracking
+namespace mj.gist.tracking.Kinect
 {
     [ExecuteInEditMode]
     public class InteractiveVolume : MonoBehaviour

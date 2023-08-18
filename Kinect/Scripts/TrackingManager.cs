@@ -7,7 +7,7 @@ using PrefsGUI;
 using PrefsGUI.RapidGUI;
 using UnityEngine;
 
-namespace mj.gist.tracking
+namespace mj.gist.tracking.Kinect
 {
     public class TrackingManager : SingletonMonoBehaviour<TrackingManager>, IGUIUser
     {

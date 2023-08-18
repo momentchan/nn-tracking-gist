@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Math = Unity.Mathematics.math;
 
-namespace mj.gist.tracking
+namespace mj.gist.tracking.Kinect
 {
     public class TrackerObject : MonoBehaviour
     {

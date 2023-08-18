@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace mj.gist.tracking
+namespace mj.gist.tracking.Kinect
 {
     public class Tracker : MonoBehaviour
     {
