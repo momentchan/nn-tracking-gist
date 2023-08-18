@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace mj.tracking {
-    public struct TrackerData {
+namespace mj.gist.tracking.Laser
+{
+    public struct TrackerData
+    {
         public uint active;
         public uint isMoving;
         public Vector2 pos;
